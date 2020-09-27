@@ -5,8 +5,11 @@ defmodule ApiService.User do
   
   
     schema "users" do
-      field :email, :string
-      field :name, :string
+			field :name, :string
+			field :email, :string
+			field :account, :string
+			field :password, :string
+			field :is_removed, :boolean, default: false
   
       timestamps()
     end
