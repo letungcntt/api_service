@@ -5,10 +5,10 @@
 use Mix.Config
 
 database_url =
-  System.get_env("hello_dev") ||
+  System.get_env("DATABASE_URL") ||
     raise """
-    environment variable hello_dev is missing.
-    For example: ecto://postgre:a@local/hello_dev
+    environment variable DATABASE_URL is missing.
+    For example: ecto://USER:PASS@HOST/DATABASE
     """
 
 config :api_service, ApiService.Repo,
