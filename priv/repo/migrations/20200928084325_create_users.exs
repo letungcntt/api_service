@@ -6,6 +6,7 @@ defmodule ApiService.Repo.Migrations.CreateUsers do
       add :name, :string
       add :email, :string
       add :account, :string
+      add :cmnd, :string
       add :password, :string
       add :is_removed, :boolean, default: false
 
