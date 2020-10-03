@@ -14,9 +14,9 @@ defmodule ApiServiceWeb.Router do
   end
 
   scope "/", ApiServiceWeb do
-    pipe_through :browser
+    resources "/users", UserController, only: [:index, :create]
 
-    get "/", UserController, :index
+    
   end
 
   # Other scopes may use custom stacks.
