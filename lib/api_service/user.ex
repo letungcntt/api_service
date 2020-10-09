@@ -10,7 +10,6 @@ defmodule ApiService.User do
 			field :account, :string
 			field :password, :string
 			field :is_removed, :boolean, default: false
-  
       timestamps()
     end
   end

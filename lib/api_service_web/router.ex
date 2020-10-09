@@ -15,8 +15,11 @@ defmodule ApiServiceWeb.Router do
 
   scope "/", ApiServiceWeb do
     resources "/users", UserController, only: [:index, :create]
-
-    
+    resources "/usersdetail", UserDetail, only: [:index, :create]
+    resources "/khaibaoytehangngay", KhaiBaoYTeHangNgay, only: [:index, :create]
+    resources "/khaibaoytetunguyen", KhaiBaoYTeTuNguyen, only: [:index, :create]
+    resources "/khaibaotiepxuc", KhaiBaoTiepXuc, only: [:index, :create]
+    resources "/phananhnguoitiepxuc", PhanAnhNguoiTiepXuc, only: [:index, :create]
   end
 
   # Other scopes may use custom stacks.
