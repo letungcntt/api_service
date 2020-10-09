@@ -1,7 +1,7 @@
 defmodule ApiServiceWeb.UserController do
     use ApiServiceWeb, :controller
 
-    alias ApiService.{ Repo, User }
+    alias ApiService.{ Repo, User, KhaiBaoYTeHangNgay }
     import Ecto.Query, only: [from: 2]
 
   def struct_to_map(struct, drop_keys \\ [])
@@ -10,7 +10,6 @@ defmodule ApiServiceWeb.UserController do
   def struct_to_map({:error, _} = error, _), do: error
   def struct_to_map(struct, drop_keys) when is_list(struct), do: Enum.map(struct, &struct_to_map(&1, drop_keys))
   def struct_to_map(struct, drop_keys), do: Map.drop(struct, [:__meta__, :__struct__] ++ drop_keys)
-
     def navie_utc_now_second do
       NaiveDateTime.utc_now
       |> NaiveDateTime.truncate(:second)
@@ -24,8 +23,8 @@ defmodule ApiServiceWeb.UserController do
       json conn, %{data: squery}
     end
 
-    def create(conn, _) do
-      params = %{name: "Tung", email: "asda", cmnd: "1412", account: "admin", password: "a"}
+    def create(conn, params) do
+      params = %{name: "VietDD", email: "doanvietcntt99@gmail.com", cmnd: "001099005803", account: "doanvietcntt99", password: "Viet2199"}
       squery =
         Repo.insert(%User{
           name: params["name"],
@@ -34,8 +33,8 @@ defmodule ApiServiceWeb.UserController do
           account: params["account"],
           password: params["password"],
           is_removed: false,
-          inserted_at: navie_utc_now_second,
-          updated_at: navie_utc_now_second
+          inserted_at: navie_utc_now_second(),
+          updated_at: navie_utc_now_second()
         })
 
         |> case do
@@ -43,4 +42,6 @@ defmodule ApiServiceWeb.UserController do
           _ -> json conn, %{success: false}
         end
     end
+    
   end
+  
