@@ -25,7 +25,6 @@ defmodule ApiServiceWeb.UserController do
   end
 
   def create(conn, params) do
-    params = %{name: "VietDD", email: "doanvietcntt99@gmail.com", cmnd: "001099005803", account: "doanvietcntt99", password: "Viet2199"}
     squery =
       Repo.insert(%User{
         name: params["name"],
@@ -42,6 +41,19 @@ defmodule ApiServiceWeb.UserController do
         {:ok, user} -> json conn, %{user: user |> struct_to_map, success: true}
         _ -> json conn, %{success: false}
       end
+  end
+
+  def login(conn, params) do
+    squery = from(
+      u in User,
+      where: u.account == ^params["account"] and u.password == ^params["password"] and u.is_removed == false
+    ) |> Repo.one
+
+    if squery do
+      json conn, %{success: true, data: squery |> struct_to_map}
+    else
+      json conn, %{success: false}
+    end
   end
     
   end

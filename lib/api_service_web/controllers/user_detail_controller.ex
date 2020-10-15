@@ -1,4 +1,4 @@
-defmodule ApiServiceWeb.UserDetail do
+defmodule ApiServiceWeb.UserDetailController do
         use ApiServiceWeb, :controller
         alias ApiService.{Repo, UserDetail }
         import Ecto.Query, only: [from: 2]
@@ -22,8 +22,7 @@ defmodule ApiServiceWeb.UserDetail do
         json conn, %{data: squery}
     end
     
-    def create(conn, _params) do
-        params = %{idUser: "1", cmndUser: "1781310183", fullnameUser: "Đinh Doãn Việt", sexUser: "1", dobUser: "1999/01/02", phoneNumberUser: "0965062715", emailUser: "doanvietcntt99@gmail.com", addressUser: "Hà Nội", dateCMNDUser: "2015/03/11", whereCMNDUser: "Hà Nội", avatarUser: "default-avatar.jpg", statusUser: true, is_removed: false}
+    def create(conn, params) do
         Repo.insert(%UserDetail{
           idUser: params["idUser"],
           cmndUser: params["cmndUser"],

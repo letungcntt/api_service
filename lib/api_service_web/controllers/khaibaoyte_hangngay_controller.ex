@@ -1,4 +1,4 @@
-defmodule ApiServiceWeb.KhaiBaoYTeHangNgay do
+defmodule ApiServiceWeb.KhaiBaoYTeHangNgayController do
         use ApiServiceWeb, :controller
         alias ApiService.{Repo, KhaiBaoYTeHangNgay }
         import Ecto.Query, only: [from: 2]
@@ -22,8 +22,7 @@ defmodule ApiServiceWeb.KhaiBaoYTeHangNgay do
         json conn, %{data: squery}
     end
 
-    def create(conn, _params) do
-        params = %{idUser: "1", trieuChung_Sot: true, trieuChung_Ho: true, trieuChung_KhoTho: true, trieuChung_DauNguoiMetMoi: true}
+    def create(conn, params) do
         Repo.insert(%KhaiBaoYTeHangNgay{
           idUser: params["idUser"],
           datetime_KhaiBao: navie_utc_now_second(),

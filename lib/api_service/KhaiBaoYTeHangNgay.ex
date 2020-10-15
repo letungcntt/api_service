@@ -3,7 +3,7 @@ defmodule ApiService.KhaiBaoYTeHangNgay do
 	import Ecto.Changeset
 	alias ApiService.KhaiBaoYTeHangNgay
 
-	schema "KhaiBaoYTeHangNgay" do
+	schema "users_checked" do
 		field :idUser, :integer
 		field :datetime_KhaiBao , :naive_datetime
 		field :trieuChung_Sot , :boolean

@@ -1,4 +1,4 @@
-defmodule ApiServiceWeb.PhanAnhNguoiTiepXuc do
+defmodule ApiServiceWeb.PhanAnhNguoiTiepXucController do
     use ApiServiceWeb, :controller
     alias ApiService.{Repo, PhanAnhNguoiTiepXuc }
     import Ecto.Query, only: [from: 2]
