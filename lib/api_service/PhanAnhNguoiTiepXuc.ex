@@ -15,6 +15,7 @@ defmodule ApiService.PhanAnhNguoiTiepXuc do
       field :viTri_PhuongXa, :integer
       field :soNha_Duong, :string
       field :is_removed, :boolean, default: false
+      field :noiDungPhanAnhKhac2  , :string
       timestamps()
     end
   end

@@ -15,7 +15,7 @@ def struct_to_map(struct, drop_keys), do: Map.drop(struct, [:__meta__, :__struct
     def index(conn, _params) do
         squery = from(
             u in PhanAnhNguoiTiepXuc,
-            select: %{idUser: u.idUser, thoiGianPhanAnh: u.thoiGianPhanAnh, tiepXuc_NghiNgo: u.tiepXuc_NghiNgo, troVeTuVungDich: u.troVeTuVungDich, coNguoiTiepXucTuVungDich: u.coNguoiTiepXucTuVungDich, noiDungPhanAnhKhac: u.noiDungPhanAnhKhac, viTri_TinhThanhPho: u.viTri_TinhThanhPho, viTri_QuanHuyen: u.viTri_QuanHuyen, viTri_PhuongXa: u.viTri_PhuongXa, soNha_Duong: u.soNha_Duong, is_removed: u.is_removed}
+            select: %{idUser: u.idUser, thoiGianPhanAnh: u.thoiGianPhanAnh, tiepXuc_NghiNgo: u.tiepXuc_NghiNgo, troVeTuVungDich: u.troVeTuVungDich, coNguoiTiepXucTuVungDich: u.coNguoiTiepXucTuVungDich, noiDungPhanAnhKhac2: u.noiDungPhanAnhKhac2, viTri_TinhThanhPho: u.viTri_TinhThanhPho, viTri_QuanHuyen: u.viTri_QuanHuyen, viTri_PhuongXa: u.viTri_PhuongXa, soNha_Duong: u.soNha_Duong, is_removed: u.is_removed}
         ) |> Repo.all
         json conn, %{data: squery}
     end
@@ -27,16 +27,17 @@ def struct_to_map(struct, drop_keys), do: Map.drop(struct, [:__meta__, :__struct
           tiepXuc_NghiNgo: params["tiepXuc_NghiNgo"],
           troVeTuVungDich: params["troVeTuVungDich"],
           coNguoiTiepXucTuVungDich: params["coNguoiTiepXucTuVungDich"],
-          noiDungPhanAnhKhac: params["noiDungPhanAnhKhac"],
+          noiDungPhanAnhKhac: "",
           viTri_TinhThanhPho: params["viTri_TinhThanhPho"],
           viTri_QuanHuyen: params["viTri_QuanHuyen"],
           viTri_PhuongXa: params["viTri_PhuongXa"],
           soNha_Duong: params["soNha_Duong"],
+          noiDungPhanAnhKhac2: params["noiDungPhanAnhKhac"],
           is_removed: false,
           inserted_at: navie_utc_now_second(),
           updated_at: navie_utc_now_second()
         })
-  
+
         |> case do
           {:ok, phananhnguoitiepxuc} -> json conn, %{phananhnguoitiepxuc: phananhnguoitiepxuc |> struct_to_map, success: true}
           _ -> json conn, %{success: false}
