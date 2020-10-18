@@ -7,7 +7,7 @@ use Mix.Config
 # Run `mix help test` for more information.
 config :api_service, ApiService.Repo,
   username: "postgres",
-  password: "a",
+  password: "12345",
   database: "hello_dev",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
