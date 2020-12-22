@@ -19,18 +19,17 @@ def struct_to_map(struct, drop_keys), do: Map.drop(struct, [:__meta__, :__struct
         ) |> Repo.all
         json conn, %{data: squery}
     end
-    def create(conn, _params) do
-        params = %{idUser: "1", tiepXuc_NghiNgo: true, troVeTuVungDich: true, coNguoiTiepXucTuVungDich: true, noiDungPhanAnhKhac: true, viTri_TinhThanhPho: "1", viTri_QuanHuyen: "2", viTri_PhuongXa: "3", soNha_Duong: "Số 10", is_removed: false}
+    def create(conn, params) do
         Repo.insert(%PhanAnhNguoiTiepXuc{
           idUser: params["idUser"],
           thoiGianPhanAnh: navie_utc_now_second(),
           tiepXuc_NghiNgo: params["tiepXuc_NghiNgo"],
           troVeTuVungDich: params["troVeTuVungDich"],
           coNguoiTiepXucTuVungDich: params["coNguoiTiepXucTuVungDich"],
-          noiDungPhanAnhKhac: "",
-          viTri_TinhThanhPho: params["viTri_TinhThanhPho"],
-          viTri_QuanHuyen: params["viTri_QuanHuyen"],
-          viTri_PhuongXa: params["viTri_PhuongXa"],
+          noiDungPhanAnhKhac: true,
+          viTri_TinhThanhPho: 1,
+          viTri_QuanHuyen: 2,
+          viTri_PhuongXa: 3,
           soNha_Duong: params["soNha_Duong"],
           noiDungPhanAnhKhac2: params["noiDungPhanAnhKhac"],
           is_removed: false,
