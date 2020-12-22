@@ -1,7 +1,7 @@
 defmodule ApiServiceWeb.UserController do
     use ApiServiceWeb, :controller
 
-    alias ApiService.{ Repo, User, KhaiBaoYTeHangNgay }
+    alias ApiService.{ Repo, User }
     import Ecto.Query, only: [from: 2]
 
   def struct_to_map(struct, drop_keys \\ [])
@@ -10,7 +10,7 @@ defmodule ApiServiceWeb.UserController do
   def struct_to_map({:error, _} = error, _), do: error
   def struct_to_map(struct, drop_keys) when is_list(struct), do: Enum.map(struct, &struct_to_map(&1, drop_keys))
   def struct_to_map(struct, drop_keys), do: Map.drop(struct, [:__meta__, :__struct__] ++ drop_keys)
-  
+
   def navie_utc_now_second do
     NaiveDateTime.utc_now
     |> NaiveDateTime.truncate(:second)
@@ -25,7 +25,6 @@ defmodule ApiServiceWeb.UserController do
   end
 
   def create(conn, params) do
-    squery =
       Repo.insert(%User{
         name: params["name"],
         email: params["email"],
@@ -43,6 +42,24 @@ defmodule ApiServiceWeb.UserController do
       end
   end
 
+  def update(conn, params) do
+    from(
+      u in User,
+      where: u.id == ^params["id"] and u.is_removed == false
+    ) |> Repo.update_all(set: [password: params["password"]])
+
+    json conn, %{success: true}
+  end
+
+  def delete(conn, params) do
+    from(
+      u in User,
+      where: u.id == ^params["id"] and u.is_removed == false
+    ) |> Repo.delete_all
+
+    json conn, %{success: true}
+  end
+
   def login(conn, params) do
     squery = from(
       u in User,
@@ -55,6 +72,5 @@ defmodule ApiServiceWeb.UserController do
       json conn, %{success: false}
     end
   end
-    
+
   end
-  
