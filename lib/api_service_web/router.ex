@@ -23,7 +23,7 @@ defmodule ApiServiceWeb.Router do
     resources "/khaibaoytetunguyen", KhaiBaoYTeTuNguyenController, only: [:index, :create]
     resources "/khaibaotiepxuc", KhaiBaoTiepXucController, only: [:index, :create]
     resources "/phananhnguoitiepxuc", PhanAnhNguoiTiepXucController, only: [:index, :create]
-    resources "/map", MapController, only: [:index]
+    resources "/map", MapsController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
