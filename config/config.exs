@@ -18,6 +18,11 @@ config :api_service, ApiServiceWeb.Endpoint,
   pubsub_server: ApiService.PubSub,
   live_view: [signing_salt: "82PSjrjl"]
 
+config :cors_plug,
+  origin: ["http://localhost:4000"],
+  max_age: 86400,
+  methods: ["GET", "POST"]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

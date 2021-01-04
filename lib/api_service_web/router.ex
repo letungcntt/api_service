@@ -10,10 +10,12 @@ defmodule ApiServiceWeb.Router do
   end
 
   pipeline :api do
+    plug CORSPlug, origin: "*"
     plug :accepts, ["json"]
   end
 
   scope "/", ApiServiceWeb do
+    pipe_through [:api]
     resources "/users", UserController, only: [:index, :create]
     put "/update", UserController, :update
     put "/delete", UserController, :delete
