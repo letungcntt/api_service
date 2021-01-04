@@ -26,6 +26,7 @@ defmodule ApiServiceWeb.Router do
     resources "/khaibaotiepxuc", KhaiBaoTiepXucController, only: [:index, :create]
     resources "/phananhnguoitiepxuc", PhanAnhNguoiTiepXucController, only: [:index, :create]
     resources "/map", MapsController, only: [:index]
+    post "/find", MapsController, :find
   end
 
   # Other scopes may use custom stacks.
