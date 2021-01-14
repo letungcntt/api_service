@@ -25,7 +25,9 @@ defmodule ApiServiceWeb.Router do
     resources "/khaibaoytetunguyen", KhaiBaoYTeTuNguyenController, only: [:index, :create]
     resources "/khaibaotiepxuc", KhaiBaoTiepXucController, only: [:index, :create]
     resources "/phananhnguoitiepxuc", PhanAnhNguoiTiepXucController, only: [:index, :create]
-    resources "/map", MapsController, only: [:index]
+    resources "/map", MapsController, only: [:index, :create]
+    put "/delete_thuy_dien", MapsController, :delete
+    put "/update_thuy_dien", MapsController, :update
     post "/find", MapsController, :find
   end
 
